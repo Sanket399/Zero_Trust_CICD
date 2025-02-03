@@ -330,7 +330,7 @@ Unseal Key 3: p66EruyPGAcuGDPFRiKEGJmFAgLnSCm0SEMzSeqW+/kL
 Unseal Key 4: ls7ONnRW2KnOkLg5M09QUm/wHzN1Q0vU5C6Jgw0IIJ4N
 Unseal Key 5: uDn3AAyv3kEifviPvEKtI5XSY9T6hee/Kif1l3yGLEeZ
 
-Initial Root Token: hvs.8PYQMs3NdW5760o1Z0ISVxxP
+Initial Roo Token: hvs.8PYQMs3NdW5760o1Z0ISVxxP
 ```
 
 ### What is seal unseal in Hashicorp Vault? 
