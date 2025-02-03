@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    environment {
+        // Default empty token value
+        SONAR_TOKEN = ''
+    }
+
+    stages {
+        stage('Get SonarQube Token from Vault') {
+            steps {
+                script {
+                    try {
+                        // Attempt to fetch the SonarQube token from Vault
+                        SONAR_TOKEN = vault path: 'secret/sonarqube', key: 'token'
+                        
+                        // Log the fetched token (masked)
+                        echo "SonarQube Token fetched successfully!"
+                    } catch (Exception e) {
+                        // Catch any errors if token retrieval fails
+                        echo "Error retrieving SonarQube token from Vault: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        error("Vault token retrieval failed!")
+                    }
+                }
+            }
+        }
+
+        stage('Verify Token') {
+            steps {
+                script {
+                    if (SONAR_TOKEN == '') {
+                        error "SONAR_TOKEN is empty! Failed to fetch token."
+                    } else {
+                        echo "SonarQube Token is not empty. Token fetched successfully!"
+                    }
+                }
+            }
+        }
+    }
+}
